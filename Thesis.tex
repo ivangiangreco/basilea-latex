@@ -1,0 +1,66 @@
+%% ----------------------------------------------------------------
+%% Thesis.tex -- main
+%% ---------------------------------------------------------------- 
+
+\documentclass[a4paper, 10pt, oneside]{memoir}
+\usepackage{thesis}
+
+%% ----------------------------------------------------------------
+
+\title				{Thesis Title}
+\thesistype			{Thesis Type}
+
+\department 			{Department of Mathematics and Computer Science}
+\faculty				{Natural Science Faculty of the University of Basel}
+\researchgroup		{Group \\ Webpage}
+
+\supervisor  			{Supervisor}
+\examiner    			{Examiner}
+
+\authors     			{Authors}
+\email				{E-Mail}
+\immatriculnr			{0000-000-000}
+
+\date				{Hand-In-Date}
+
+\universitylogo		{StyleFiles/LogoUniBasel}
+\universitysignet		{StyleFiles/SignetUniBasel}
+
+
+%% ----------------------------------------------------------------
+\begin{document}
+\thesisfront
+\maketitle
+\pagestyle{thesis}
+\chapterstyle{thesis}
+%% ----------------------------------------------------------------
+%\input{./Front/Acknowledgment}
+%% ----------------------------------------------------------------
+%\input{./Front/Abstract_E}
+%\input{./Front/Abstract_D}
+%% ----------------------------------------------------------------
+\thesistoc
+%% ----------------------------------------------------------------
+%\thesisnomencl
+%% ----------------------------------------------------------------
+\thesismain
+\input{./Chapters/Chapter1}
+%\input{./Chapters/Chapter2}
+%\input{./Chapters/Chapter3}
+%\input{./Chapters/Chapter4}
+%\input{./Chapters/Chapter5}
+%\input{./Chapters/Chapter6}
+%\input{./Chapters/Chapter7}
+%% ----------------------------------------------------------------
+\thesisappendix
+\thesisbib
+\begin{appendices}
+	\input{./Back/AppendixA} 
+\end{appendices}
+%% ----------------------------------------------------------------
+\thesisback
+\input{./Back/DeclarationOfAuthorship}
+\includepdf[noautoscale]{./Back/Plagiatserklaerung.pdf}
+%% ----------------------------------------------------------------
+\end{document}
+%% ----------------------------------------------------------------

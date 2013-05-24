@@ -1,0 +1,195 @@
+%%
+%%  This file is originally based on 'ECSthesis.cls' by Steve R. Gunn
+%%  and 'phdthesis.sty' by Jamie Stevens. In this new version many parts
+%%  have been replaced by calls to the memoir package. Many existing
+%%  templates using the memoir served as model.
+%%
+%%  v.2.0
+%%
+%%  2011, Ivan Giangreco
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{thesis}[2011]
+
+% text to be set for frontpage
+\newcommand*{\supervisor}[1]{\def\supervisorint{#1}}
+\newcommand*{\examiner}[1]{\def\examinerint{#1}}
+\newcommand*{\authors}[1]{\def\authorsint{#1}}
+\newcommand*{\email}[1]{\def\emailint{#1}}
+\newcommand*{\universitylogo}[1]{\def\universitylogoint{#1}}
+\newcommand*{\universitysignet}[1]{\def\universitysignetint{#1}}
+\newcommand*{\department}[1]{\def\departmentint{#1}}
+\newcommand*{\faculty}[1]{\def\facultyint{#1}}
+\newcommand*{\researchgroup}[1]{\def\researchgroupint{#1}}
+\newcommand*{\thesistype}[1]{\def\thesistypeint{#1}}
+\newcommand*{\immatriculnr}[1]{\def\immatriculnrint{#1}}
+
+% settings for nomenclature (i.e. the abbreviations)
+% - for using in text use e.g. \nomenclature{LED}{Light-Emitting Diode}
+% this will print the text directly as Light-Emitting Diode (LED)
+% - the abbreviations for the whole document can be printed with the command \thesisnomencl
+% - invoke MakeIndex to create a *.nlo file (see also documentation of nomenclature package)
+\usepackage{nomencl}
+\newcommand*{\nomenclint}{}
+\let\nomenclint\nomenclature
+\renewcommand*{\nomenclature}[2]{\textit{#2} (#1) \nomenclint{#1}{#2}}
+\makenomenclature
+\newcommand*{\thesisnomencl}{\renewcommand{\nomname}{Abbreviations}\printnomenclature\addcontentsline{toc}{chapter}{Abbreviations}}
+
+% graphics 
+% (see also floats section in this document for more options)
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\graphicspath{{Figures/}}
+
+% definition of fonts (phv is Helvetica, pcr is Courrier)
+\renewcommand{\sfdefault}{phv}
+\renewcommand{\ttdefault}{pcr}
+  
+% definition of colors
+\usepackage{color,graphicx}
+\definecolor{chaptercolor}{rgb}{.7,.7,.7}
+\definecolor{emphasizecolor}{rgb}{.7,.7,.7}
+
+% margins
+\setlrmarginsandblock{3.5cm}{3.5cm}{*}
+\setulmarginsandblock{3.5cm}{3.5cm}{*}
+\checkandfixthelayout
+
+% document organization
+\setsecnumdepth{subsubsection}
+\setcounter{tocdepth}{6}
+\newcounter{dummy}
+\newcommand\addtotoc[1]{
+\refstepcounter{dummy}
+\addcontentsline{toc}{chapter}{#1}}
+
+% definition of chapter style (i.e. large number and text)
+\setlength{\beforechapskip}{50pt}
+\setlength{\afterchapskip}{1pt}
+\newcommand*{\colorchapnumber}{\color{chaptercolor}}
+\newcommand*{\fontchapnumber}{\usefont{T1}{phv}{b}{n}\fontsize{100}{130}\selectfont}
+\newcommand*{\fontchaptitle}{\sffamily\bfseries\huge}
+\renewcommand*{\afterchapternum}{}
+\renewcommand*{\printchaptername}{}
+\setlength{\midchapskip}{20mm}
+\renewcommand*{\chapternamenum}{}
+\renewcommand*{\printchapternum}{\raggedleft{\colorchapnumber\fontchapnumber\thechapter}\par}
+\renewcommand*{\printchaptertitle}[1]{\raggedleft\fontchaptitle{#1}\par \vspace{30pt} \nobreak}
+
+% definition of (subsub)section styles
+\setsecheadstyle{\sffamily\Large}
+\setbeforesecskip{25pt}
+\setaftersecskip{1pt}
+
+\setsubsecheadstyle{\sffamily\large}
+\setbeforesubsecskip{20pt}
+\setaftersubsecskip{1pt}
+
+\setsubsubsecheadstyle{\sffamily\normalsize}
+\setbeforesubsubsecskip{20pt}
+\setaftersubsubsecskip{1pt}
+
+% definition of line spacing, indent of paragraph, etc.
+\OnehalfSpacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\raggedbottom
+
+% header, footer
+\nouppercaseheads
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+
+\makepagestyle{thesis}
+\makeevenhead{thesis}{\leftmark}{}{\thepage}
+\makeoddhead{thesis}{\leftmark}{}{\thepage}
+\makeheadrule{thesis}{\textwidth}{0.2pt}
+\makeevenfoot{thesis}{}{}{}
+\makeoddfoot{thesis}{}{}{}
+\copypagestyle{chapter}{empty}
+
+% footnotes
+\setlength{\skip\footins}{20pt}
+\usepackage[hang]{footmisc}
+\setlength{\footnotemargin}{10pt}
+\usepackage{chngcntr} 
+\counterwithout{footnote}{chapter}
+
+% add highlighting possibilities
+% use \hlt to highlight parts of text, e.g. \hlt{this is important}
+\usepackage{soul}
+\newcommand{\hlt}[1]{\hl{#1}}
+
+% various imports
+\usepackage[ngerman, english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amscd,amsthm}
+
+% clearing pages
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else\hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\newcommand*{\tmpcleardoublepage}{}
+\let\tmpcleardoublepage\cleardoublepage
+
+% floats
+\captionstyle{\raggedright}
+\setfloatlocations{figure}{h!}
+\setlength{\intextsep}{10pt}
+\setlength{\textfloatsep}{10pt}
+
+% definition of table of contents (i.e. title, header text, appearance in pdf-TOC, etc.)
+\newcommand*{\thesistoc}{\cleardoublepage\renewcommand*{\contentsname}{Table of Contents} \createplainmark{toc}{both}{Table of Contents} \currentpdfbookmark{Table of Contents}{toc} \tableofcontents*}
+% adds the word "Appendix" in front of chapters in the appendix section
+\renewcommand*{\cftappendixname}{Appendix\space}
+
+
+% definition of bibliography
+\newcommand*{\thesisbib}{\cleardoublepage\renewcommand*{\contentsname}{Bibliography} \createplainmark{bib}{both}{Bibliography}\bibliographystyle{thesis}\bibliography{Bibliography}}
+\usepackage[square, numbers, comma, sort&compress]{natbib}
+
+% document structure
+\newcommand*{\thesisfront}{\frontmatter \let\cleardoublepage\clearpage }
+\newcommand*{\thesismain}{ \addtocontents{toc}{\vspace{2em}} \mainmatter \let\cleardoublepage\tmpcleardoublepage }
+\newcommand*{\thesisappendix}{ \addtocontents{toc}{\vspace{2em}} \appendix \let\cleardoublepage\clearpage}
+
+\newcommand*{\thesisback}{ \addtocontents{toc}{\vspace{2em}} \backmatter \let\cleardoublepage\clearpage}
+
+% title page
+\renewcommand\maketitle{
+  \hypersetup{pdftitle={\@title}}
+  \hypersetup{pdfauthor=\authorsint}
+  \thispagestyle{empty}
+  {\raggedright\includegraphics{\universitylogoint}}\par
+    \begin{center}
+      \vspace{3cm}
+      {\Huge \sffamily \bfseries \@title \par}
+      \vspace{0.5cm}
+      {\thesistypeint \par}
+      \vspace{3cm} 	  
+      {\facultyint \par}
+      {\departmentint \par}
+      {\researchgroupint \par}
+      \vspace{1.5cm}
+      {Examiner: \examinerint \par}
+      {Supervisor: \supervisorint \par}
+      \vspace{1.5cm}
+      {\authorsint \par}
+      {\emailint \par}
+      {\immatriculnrint \par}      
+      \vfill
+      {\@date \par}
+      \vspace{0.5cm}
+	 {\includegraphics[width=1.5cm]{\universitysignetint} }
+   \end{center}
+}
+
+% pdf settings
+\usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
+   bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
+   colorlinks,linkcolor={black},citecolor={black},urlcolor={black}, filecolor={black},
+   pdfstartview={FitV}, breaklinks=true, unicode]{hyperref}
+
+\endinput
+%%
+%% End of file 'bthesis.sty'
