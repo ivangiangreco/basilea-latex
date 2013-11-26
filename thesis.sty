@@ -6,11 +6,13 @@
 %%
 %%  v.2.0
 %%
-%%  2011, Ivan Giangreco
+%%  2013, Ivan Giangreco
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{thesis}[2011]
+\ProvidesPackage{thesis}[2013]
+
+\usepackage[utf8]{inputenc}
 
 % text to be set for frontpage
 \newcommand*{\supervisor}[1]{\def\supervisorint{#1}}
@@ -21,9 +23,12 @@
 \newcommand*{\universitysignet}[1]{\def\universitysignetint{#1}}
 \newcommand*{\department}[1]{\def\departmentint{#1}}
 \newcommand*{\faculty}[1]{\def\facultyint{#1}}
-\newcommand*{\researchgroup}[1]{\def\researchgroupint{#1}}
+\newcommand*{\research}[1]{\def\researchgroupint{#1}}
 \newcommand*{\thesistype}[1]{\def\thesistypeint{#1}}
 \newcommand*{\immatriculnr}[1]{\def\immatriculnrint{#1}}
+
+\def\titleint{\@title}
+\def\dateint{\@date}
 
 % settings for nomenclature (i.e. the abbreviations)
 % - for using in text use e.g. \nomenclature{LED}{Light-Emitting Diode}
@@ -39,10 +44,14 @@
 
 % graphics 
 % (see also floats section in this document for more options)
-\usepackage{graphics}
-\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{everyshi}
+\usepackage{ifthen}
+\usepackage{calc}
 \usepackage{pdfpages}
 \graphicspath{{Figures/}}
+\newsubfloat{figure}
+
 
 % definition of fonts (phv is Helvetica, pcr is Courrier)
 \renewcommand{\sfdefault}{phv}
@@ -60,7 +69,7 @@
 
 % document organization
 \setsecnumdepth{subsubsection}
-\setcounter{tocdepth}{6}
+\setcounter{tocdepth}{3}
 \newcounter{dummy}
 \newcommand\addtotoc[1]{
 \refstepcounter{dummy}
@@ -145,7 +154,7 @@
 
 
 % definition of bibliography
-\newcommand*{\thesisbib}{\cleardoublepage\renewcommand*{\contentsname}{Bibliography} \createplainmark{bib}{both}{Bibliography}\bibliographystyle{thesis}\bibliography{Bibliography}}
+\newcommand*{\thesisbib}{\cleardoublepage\renewcommand*{\contentsname}{Bibliography} \createplainmark{bib}{both}{Bibliography}\bibliographystyle{thesis}\bibliography{thesis}}
 \usepackage[square, numbers, comma, sort&compress]{natbib}
 
 % document structure
@@ -184,6 +193,22 @@
    \end{center}
 }
 
+% declaration
+\newcommand{\formlabel}[2]{\vspace{0.25cm}\textbf{\sffamily \footnotesize #1 --- #2}\\}
+
+% urls
+\usepackage{url}
+\urlstyle{same}
+
+% footnotes
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+
+% math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
 % pdf settings
 \usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
    bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
@@ -192,4 +217,4 @@
 
 \endinput
 %%
-%% End of file 'bthesis.sty'
+%% End of file 'thesis.sty'
