@@ -19,8 +19,7 @@
 \newcommand*{\examiner}[1]{\def\examinerint{#1}}
 \newcommand*{\authors}[1]{\def\authorsint{#1}}
 \newcommand*{\email}[1]{\def\emailint{#1}}
-\newcommand*{\universitylogo}[1]{\def\universitylogoint{#1}}
-\newcommand*{\universitysignet}[1]{\def\universitysignetint{#1}}
+\newcommand*{\ulogo}[1]{\def\universitylogoint{#1}}
 \newcommand*{\department}[1]{\def\departmentint{#1}}
 \newcommand*{\faculty}[1]{\def\facultyint{#1}}
 \newcommand*{\research}[1]{\def\researchgroupint{#1}}
@@ -51,7 +50,6 @@
 \usepackage{pdfpages}
 \graphicspath{{Figures/}}
 \newsubfloat{figure}
-
 
 % definition of fonts (phv is Helvetica, pcr is Courrier)
 \renewcommand{\sfdefault}{phv}
@@ -187,8 +185,6 @@
       {\immatriculnrint \par}      
       \vfill
       {\@date \par}
-      \vspace{0.5cm}
-	 {\includegraphics[width=1.5cm]{\universitysignetint} }
    \end{center}
 }
 
