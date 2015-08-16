@@ -12,6 +12,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{Basilea}[2014]
 
+\usepackage[ngerman, english]{babel}
 \usepackage[utf8]{inputenc}
 
 % text to be set for frontpage
@@ -39,7 +40,7 @@
 \let\nomenclint\nomenclature
 \renewcommand*{\nomenclature}[2]{\textit{#2} (#1) \nomenclint{#1}{#2}}
 \makenomenclature
-\newcommand*{\thesisnomencl}{\renewcommand{\nomname}{Abbreviations}\printnomenclature\addcontentsline{toc}{chapter}{Abbreviations}}
+\newcommand*{\thesisnomencl}{\renewcommand{\nomname}{\iflanguage{english}{Abbreviations}{Abkürzungsverzeichnis}}\printnomenclature\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}}
 
 % graphics 
 % (see also floats section in this document for more options)
@@ -131,7 +132,6 @@
 \newcommand{\hlt}[1]{\hl{#1}}
 
 % various imports
-\usepackage[ngerman, english]{babel}
 \usepackage{amsmath,amsfonts,amssymb,amscd,amsthm}
 
 % clearing pages
@@ -141,17 +141,17 @@
 
 % floats
 \captionstyle{\raggedright}
-\setfloatlocations{figure}{h!}
+\setfloatlocations{figure}{ht!}
 \setlength{\intextsep}{10pt}
 \setlength{\textfloatsep}{10pt}
 
 % definition of table of contents (i.e. title, header text, appearance in pdf-TOC, etc.)
-\newcommand*{\thesistoc}{\cleardoublepage\renewcommand*{\contentsname}{Table of Contents} \createplainmark{toc}{both}{Table of Contents} \currentpdfbookmark{Table of Contents}{toc} \tableofcontents*}
+\newcommand*{\thesistoc}{\cleardoublepage\renewcommand*{\contentsname}{\iflanguage{english}{Table of Contents}{Inhaltsverzeichnis}} \createplainmark{toc}{both}{\iflanguage{english}{Table of Contents}{Inhaltsverzeichnis}} \currentpdfbookmark{\iflanguage{english}{Table of Contents}{Inhaltsverzeichnis}}{toc} \tableofcontents*}
 % adds the word "Appendix" in front of chapters in the appendix section
-\renewcommand*{\cftappendixname}{Appendix\space}
+\renewcommand*{\cftappendixname}{\iflanguage{english}{Appendix}{Anhang}\space}
 
 % definition of bibliography
-\newcommand*{\thesisbib}{\cleardoublepage\renewcommand*{\contentsname}{Bibliography} \createplainmark{bib}{both}{Bibliography}\bibliographystyle{thesis}\bibliography{thesis}}
+\newcommand*{\thesisbib}{\cleardoublepage\renewcommand*{\contentsname}{\iflanguage{english}{Bibliography}{Literaturverzeichnis}} \createplainmark{bib}{both}{\iflanguage{english}{Bibliography}{Literaturverzeichnis}}\bibliographystyle{thesis}\bibliography{thesis}}
 \usepackage[square, numbers, comma, sort&compress]{natbib}
 
 % document structure
@@ -177,8 +177,8 @@
       {\departmentint \par}
       {\researchgroupint \par}
       \vspace{1.5cm}
-      {Examiner: \examinerint \par}
-      {Supervisor: \supervisorint \par}
+      {\iflanguage{english}{Examiner}{Beurteiler}: \examinerint \par}
+      {\iflanguage{english}{Supervisor}{Zweitbeurteiler}: \supervisorint \par}
       \vspace{1.5cm}
       {\authorsint \par}
       {\emailint \par}
