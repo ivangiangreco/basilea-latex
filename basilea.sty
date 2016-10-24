@@ -210,7 +210,19 @@
    colorlinks,linkcolor={black},citecolor={black},urlcolor={black}, filecolor={black},
    pdfstartview={FitV}, breaklinks=true, unicode]{hyperref}
 
-\endinput
 
+% todos
+\usepackage[colorinlistoftodos, textwidth=4cm]{todonotes} % add ",disable" in [] to remove all todos, missing figures and the todo list
+\newcommand{\todoEmpty}[2][]{\todo[fancyline, #1]{#2}}
+\newcommand{\todoMissing}[2][]{\todoEmpty[color=magenta!80, linecolor=magenta!80, #1]{Missing: #2}}
+\newcommand{\todoCheck}[2][]{\todoEmpty[color=red!80, linecolor=red!80, #1]{Check: #2}}
+\newcommand{\todoRevise}[2][]{\todoEmpty[color=orange!80, linecolor=orange!80, #1]{Revise: #2}}
+\newcommand{\todoCitation}[2][]{\todoEmpty[color=yellow!80, linecolor=yellow!80, #1]{Citation: #2}}
+\newcommand{\todoLanguage}[2][]{\todoEmpty[color=blue!40!white, linecolor=blue!40!white, #1]{Language: #2}}
+\newcommand{\todoQuestion}[2][]{\todoEmpty[color=green!80!white, linecolor=green!80!white, #1]{Question: #2}}
+\newcommand{\todoNote}[2][]{\todoEmpty[color=black!20!white, linecolor=black!20!white, #1]{Note: #2}}
+\newcommand{\todoFigure}[5]{\begin{figure}[#1]\centering\missingfigure[figwidth=#2]{#3}\caption{#4}\label{#5}\end{figure}}
+
+\endinput
 
 %% End of file 'basilea.sty'
