@@ -40,7 +40,7 @@
 \let\nomenclint\nomenclature
 \renewcommand*{\nomenclature}[2]{\textit{#2} (#1) \nomenclint{#1}{#2}}
 \makenomenclature
-\newcommand*{\thesisnomencl}{\renewcommand{\nomname}{\iflanguage{english}{Abbreviations}{Abkürzungsverzeichnis}}\printnomenclature\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}}
+\newcommand*{\thesisnomencl}{\renewcommand{\nomname}{\iflanguage{english}{Abbreviations}{Abkürzungsverzeichnis}}\printnomenclature\addcontentsline{toc}{chapter}{\iflanguage{english}{Abbreviations}{Abkürzungsverzeichnis}}}
 
 % graphics 
 % (see also floats section in this document for more options)
