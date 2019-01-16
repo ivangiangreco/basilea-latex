@@ -12,6 +12,27 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{basilea}[2014]
 
+\newcommand*{\basileaBibStyle}{thesis}
+
+%%
+%% Provides the option to use \citet to get the authors name
+%% Internally, this changes the bibliographystyle from thesis to plainnat
+%%
+\DeclareOption{citeauthor}{
+	\renewcommand*{\basileaBibStyle}{plainnat}
+}
+%%
+%% Provides the default option to not use \citet to get the authors name
+%% Internally, this sets the bibliographystyle to thesis
+%%
+\DeclareOption{citenumber}{
+	\renewcommand*{\basileaBibStyle}{thesis}
+}
+
+\ExecuteOptions{citenumber}
+
+\ProcessOptions\relax
+
 \usepackage[ngerman, english]{babel}
 \usepackage[utf8]{inputenc}
 
@@ -151,7 +172,7 @@
 \renewcommand*{\cftappendixname}{\iflanguage{english}{Appendix}{Anhang}\space}
 
 % definition of bibliography
-\newcommand*{\thesisbib}{\cleardoublepage\renewcommand*{\contentsname}{\iflanguage{english}{Bibliography}{Literaturverzeichnis}} \createplainmark{bib}{both}{\iflanguage{english}{Bibliography}{Literaturverzeichnis}}\bibliographystyle{thesis}\bibliography{thesis}}
+\newcommand*{\thesisbib}{\cleardoublepage\renewcommand*{\contentsname}{\iflanguage{english}{Bibliography}{Literaturverzeichnis}} \createplainmark{bib}{both}{\iflanguage{english}{Bibliography}{Literaturverzeichnis}}\bibliographystyle{\basileaBibStyle}\bibliography{thesis}}
 \usepackage[square, numbers, comma, sort&compress]{natbib}
 
 % document structure
